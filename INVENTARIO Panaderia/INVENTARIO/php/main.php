@@ -3,9 +3,15 @@
 
 	# Conexion a la base de datos #
 	function conexion(){
-		$pdo = mysqli_init();
-		mysqli_ssl_set($pdo, NULL, NULL, "ssl/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
-		mysqli_real_connect($pdo, 'panaderia.mysql.database.azure.com', "ECONTRERASG6", "Emmanuel1$_", "panaderia", 3306, MYSQLI_CLIENT_SSL) or die ("ERROR AL CONECTAR ". mysqli_error());
+		try {
+			$pdo = new PDO("mysql:host=panaderia.mysql.database.azure.com;dbname=panaderia", "ECONTRERASG6", 'Emmanuel1$_');
+			$pdo->setAttribute(PDO::ATTR_TIMEOUT, 86400);
+			$pdo->setAttribute(PDO::MYSQL_ATTR_SSL_CA, 'php/DigiCertGlobalRootCA.crt.pem');
+			// Otros atributos y configuraciones de PDO
+		} catch (PDOException $e) {
+			die("Error al conectar: " . $e->getMessage());
+		}
+		return $pdo;
 	}
 
 
