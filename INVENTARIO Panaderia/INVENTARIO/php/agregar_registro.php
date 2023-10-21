@@ -4,6 +4,8 @@ $datosAInsertar = json_decode(file_get_contents("php://input"), true);
 $parametro1 = $datosAInsertar["campo1"];
 $parametro2 = $datosAInsertar["campo2"];
 
+//declaración de instancias
+
 // Conexión a la base de datos y código para procesar la solicitud
 require_once "main.php";
 $conexion=conexion();
