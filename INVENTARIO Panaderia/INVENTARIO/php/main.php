@@ -1,9 +1,11 @@
 <?php
 	
+
 	# Conexion a la base de datos #
 	function conexion(){
-		$pdo = new PDO('mysql:host=localhost;dbname=panaderia', 'root', '');
-		return $pdo;
+		$pdo = mysqli_init();
+		mysqli_ssl_set($pdo, NULL, NULL, "ssl/DigiCertGlobalRootG2.crt.pem", NULL, NULL);
+		mysqli_real_connect($pdo, 'panaderia.mysql.database.azure.com', "ECONTRERASG6", "Emmanuel1$_", "panaderia", 3306, MYSQLI_CLIENT_SSL) or die ("ERROR AL CONECTAR ". mysqli_error());
 	}
 
 
