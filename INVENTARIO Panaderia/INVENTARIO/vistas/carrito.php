@@ -60,6 +60,7 @@ if (count($datos) > 0) {
     }
     $tabla .= '<div>
     <p> TOTAL A PAGAR: Q' . $total . '
+    <a onclick="Terminar()" class="button is-link is-rounded is-small">FINALIZAR PEDIDO</a>
 </div>';
 } else {
     $tabla .= '<p class="has-text-centered" >No hay registros en su carrito</p>';
@@ -96,4 +97,8 @@ echo $tabla;
 
     location.reload();
 	}
+
+    function Terminar(){
+        alert("Su pedido ha sido envíado, pagar y recoger en el local");
+    }
 </script>
